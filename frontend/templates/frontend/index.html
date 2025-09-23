@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micro Guardian</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    /* Custom CSS for a clean slate and full-screen setup */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 6rem; /* Added space between header and hero content */
+    }
+
+    /* Make the canvas cover the full background */
+    #bgCanvas {
+      position: fixed; /* Use fixed to keep it in the background */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body class="bg-[#0a0f12] text-white">
+  
+  <!-- Canvas is now the first element in the body to sit behind everything -->
+  <canvas id="bgCanvas"></canvas>
+  
+  <!-- Header Section with a semi-transparent, blurred background -->
+  <header class="left-0 w-full z-30 p-4">
+    <nav class="container mx-auto flex justify-between items-center px-4">
+      <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-full p-2 px-6 border border-white border-opacity-20 shadow-lg">
+        <a href="#" class="text-2xl font-bold text-white">Micro Guardian</a>
+      </div>
+      <div class="hidden md:flex space-x-9 bg-white bg-opacity-10 backdrop-blur-sm rounded-full p-2 px-6 border border-white border-opacity-20 shadow-lg">
+        <a href="#" class="text-white-500 text-2xl  hover:text-blue-300 transition-colors">Home</a>
+        <a href="#" class="text-white text-2xl hover:text-blue-300 transition-colors">About</a>
+        <a href="#" class="text-white text-2xl hover:text-blue-300 transition-colors">Services</a>
+        <a href="#" class="text-white text-2xl hover:text-blue-300 transition-colors">Contact</a>
+      </div>
+      <button class="md:hidden text-white focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Hero Content with a semi-transparent box -->
+    <div class="hero-content relative z-20 max-w-4xl mx-auto p-8 text-center bg-white bg-opacity-10 backdrop-blur-sm rounded-xl border border-white border-opacity-20 shadow-lg">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4">Micro Guardian</h1>
+      <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-blue-300">Detect. Protect. Preserve.</h2>
+      <p class="text-base sm:text-lg mb-8 text-gray-200">
+        Revolutionary technology that detects microplastic contamination in water sources with laboratory-grade precision, empowering communities to take action for cleaner, safer water.
+      </p>
+      <a href="#get-started" class="btn bg-[#00c3ff] text-black font-bold py-3 px-8 rounded-full transition-all duration-300 hover:bg-[#00f0ff] hover:shadow-[0_0_20px_rgba(0,195,255,0.5)] inline-block">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Key Features Section -->
+  <section class="w-full py-20 relative z-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-center text-4xl sm:text-5xl font-bold mb-16">Key Feature Highlights</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Tab 1: Real-Time Detection -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <div class="flex items-center mb-4">
+            <span class="text-4xl mr-4">🔬</span>
+            <h3 class="text-2xl font-semibold">Real-Time Detection</h3>
+          </div>
+          <p class="text-gray-300">
+            Access instant microplastic analysis with our portable optical sensor. Get results in minutes, not hours. View contamination levels, particle identification (PET, PVC, etc.), and concentration estimates through our intuitive interface. Empowering immediate decision-making for water safety.
+          </p>
+        </div>
+
+        <!-- Tab 2: Portable & Affordable -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <div class="flex items-center mb-4">
+            <span class="text-4xl mr-4">💰</span>
+            <h3 class="text-2xl font-semibold">Portable & Affordable</h3>
+          </div>
+          <p class="text-gray-300">
+            Revolutionary low-cost alternative to expensive lab equipment (FTIR, Raman). Our foldable 3D-printed design with ESP-32 technology costs under ₹1000, making microplastic detection accessible to communities, schools, and field researchers worldwide.
+          </p>
+        </div>
+
+        <!-- Tab 3: Smart Analysis -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <div class="flex items-center mb-4">
+            <span class="text-4xl mr-4">🤖</span>
+            <h3 class="text-2xl font-semibold">Smart Analysis</h3>
+          </div>
+          <p class="text-gray-300">
+            Advanced machine learning models process RGB LED and LDR sensor data to classify water samples.
+          </p>
+        </div>
+
+        <!-- Tab 4: No Sample Prep -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <div class="flex items-center mb-4">
+            <span class="text-4xl mr-4">⚡</span>
+            <h3 class="text-2xl font-semibold">No Sample Prep</h3>
+          </div>
+          <p class="text-gray-300">
+            Unlike conventional methods, Micro Guardian requires zero sample preparation. Simply add water to our 3×3×3cm container and get results instantly. No chemicals, no complex procedures, no trained lab technicians needed.
+          </p>
+        </div>
+
+        <!-- Tab 5: Community Network -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <div class="flex items-center mb-4">
+            <span class="text-4xl mr-4">🌐</span>
+            <h3 class="text-2xl font-semibold">Community Network</h3>
+          </div>
+          <p class="text-gray-300">
+            Join our growing network of citizen scientists and researchers. Share data through our Wi-Fi enabled platform, contribute to global microplastic mapping, and access crowdsourced contamination trends in your area.
+          </p>
+        </div>
+
+        <!-- Tab 6: Educational Impact -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <div class="flex items-center mb-4">
+            <span class="text-4xl mr-4">🎓</span>
+            <h3 class="text-2xl font-semibold">Educational Impact</h3>
+          </div>
+          <p class="text-gray-300">
+            Perfect hands-on tool for environmental science education. Students and educators can conduct real experiments, collect genuine data, and contribute to meaningful research while learning about microplastic pollution and detection methods.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="w-full py-20 relative z-20">
+    <div class="container mx-auto px-4 text-center">
+      <h3 class="text-lg font-semibold text-[#00c3ff]">What People Say</h3>
+      <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">User Testimonials</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto mb-12">
+        Explore firsthand experiences and discover the impact of AquaSense Labs on environmental monitoring efforts.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card p-6 rounded-3xl bg-[#1a1a1a] border border-gray-700 shadow-lg transition-all duration-300 cursor-pointer hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)]">
+          <div class="flex items-center mb-4">
+            <span class="text-2xl mr-4 text-blue-500">🐦</span>
+            <span class="text-red-500 text-2xl">★★★★★</span>
+          </div>
+          <p class="text-gray-300 mb-6 text-base text-left leading-relaxed">"Micro Guardian has revolutionized our research. The real-time data and advanced analytics are invaluable for understanding microplastic pollution."</p>
+          <div class="flex items-center justify-start">
+            <img src="https://placehold.co/40x40/2563eb/white" alt="Profile of Dr. Scientist" class="rounded-full mr-4 w-10 h-10 border-2 border-gray-600">
+            <div>
+              <p class="font-semibold text-white text-lg">Dr. Scientist</p>
+              <p class="text-gray-400 text-sm">Researcher</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card p-6 rounded-3xl bg-[#1a1a1a] border border-gray-700 shadow-lg transition-all duration-300 cursor-pointer hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)]">
+          <div class="flex items-center mb-4">
+            <span class="text-2xl mr-4 text-red-500">G+</span>
+            <span class="text-red-500 text-2xl">★★★★★</span>
+          </div>
+          <p class="text-gray-300 mb-6 text-base text-left leading-relaxed">"The citizen science initiative is fantastic! It's empowering to contribute to real environmental research and make a tangible difference."</p>
+          <div class="flex items-center justify-start">
+            <img src="https://placehold.co/40x40/94a3b8/white" alt="Profile of Alex" class="rounded-full mr-4 w-10 h-10 border-2 border-gray-600">
+            <div>
+              <p class="font-semibold text-white text-lg">Alex</p>
+              <p class="text-gray-400 text-sm">Researcher</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card p-6 rounded-3xl bg-[#1a1a1a] border border-gray-700 shadow-lg transition-all duration-300 cursor-pointer hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)]">
+          <div class="flex items-center mb-4">
+            <span class="text-2xl mr-4 text-blue-500">f</span>
+            <span class="text-red-500 text-2xl">★★★★★</span>
+          </div>
+          <p class="text-gray-300 mb-6 text-base text-left leading-relaxed">"The accuracy and reliability of Micro Guardian's data are unmatched. It's essential for our environmental protection initiatives and policy development."</p>
+          <div class="flex items-center justify-start">
+            <img src="https://placehold.co/40x40/be185d/white" alt="Profile of Sam" class="rounded-full mr-4 w-10 h-10 border-2 border-gray-600">
+            <div>
+              <p class="font-semibold text-white text-lg">Sam</p>
+              <p class="text-gray-400 text-sm">Analyst</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Script for Canvas Animation -->
+  <script>
+    const canvas = document.getElementById("bgCanvas");
+    const ctx = canvas.getContext("2d");
+    
+    // Initial resize to set canvas dimensions
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    // Particle class for microplastics
+    class Particle {
+      constructor() {
+        this.x = random(0, canvas.width);
+        this.y = random(0, canvas.height);
+        this.size = random(2, 6);
+        this.speedX = random(-0.5, 0.5);
+        this.speedY = random(-0.5, 0.5);
+        // Reverted to the previous color logic
+        this.color = `rgba(0, 195, 255, ${random(0.2, 0.8)})`;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        // Removed the shadow properties to fix the "bacteria blur"
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Create particles
+    for (let i = 0; i < 150; i++) {
+      particles.push(new Particle());
+    }
+
+    // Animate particles
+    function animate() {
+      // Clear canvas each frame to remove trailing blur
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Draw "water ripple" background effect
+      ctx.fillStyle = 'rgba(10, 15, 18, 0.2)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Optional: Scatter particles on mouse hover
+    canvas.addEventListener("mousemove", (e) => {
+      particles.forEach(p => {
+        const dx = p.x - e.clientX;
+        const dy = p.y - e.clientY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          p.x += (dx / dist) * 5;
+          p.y += (dy / dist) * 5;
+        }
+      });
+    });
+
+    // Responsive canvas
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
