@@ -9,6 +9,8 @@
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <style>
     /* Custom CSS for a clean slate and full-screen setup */
     body {
@@ -36,6 +38,27 @@
       height: 100%;
       z-index: 1;
     }
+
+    .flowing-gradient {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-image: linear-gradient(90deg, #00c3ff, #00f0ff, #00c3ff);
+      background-size: 200% 100%;
+      animation: flowing 3s linear infinite;
+    }
+
+    @keyframes flowing {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
   </style>
 </head>
 <body class="bg-[#0a0f12] text-white">
@@ -50,7 +73,7 @@
         <a href="#" class="text-2xl font-bold text-white">Micro Guardian</a>
       </div>
       <div class="hidden md:flex space-x-9 bg-white bg-opacity-10 backdrop-blur-sm rounded-full p-2 px-6 border border-white border-opacity-20 shadow-lg">
-        <a href="#" class="text-white-500 text-2xl  hover:text-blue-300 transition-colors">Home</a>
+        <a href="#" class="text-white-500 text-2xl hover:text-blue-300 transition-colors">Home</a>
         <a href="#" class="text-white text-2xl hover:text-blue-300 transition-colors">About</a>
         <a href="#" class="text-white text-2xl hover:text-blue-300 transition-colors">Services</a>
         <a href="#" class="text-white text-2xl hover:text-blue-300 transition-colors">Contact</a>
@@ -105,7 +128,7 @@
         </div>
 
         <!-- Tab 3: Smart Analysis -->
-        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
           <div class="flex items-center mb-4">
             <span class="text-4xl mr-4">🤖</span>
             <h3 class="text-2xl font-semibold">Smart Analysis</h3>
@@ -146,6 +169,106 @@
           <p class="text-gray-300">
             Perfect hands-on tool for environmental science education. Students and educators can conduct real experiments, collect genuine data, and contribute to meaningful research while learning about microplastic pollution and detection methods.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources & Downloads Section -->
+  <section class="w-full py-20 relative z-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">Resources & Downloads</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto mb-12">
+        Everything you need to implement, customize, and optimize your MicroGaurdian system.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Working Card -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <a href="#" class="flex flex-col items-center justify-center h-full">
+            <div class="text-4xl mb-4 text-[#00c3ff]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-square"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m10 10-2 2 2 2"/><path d="m14 14 2-2-2-2"/></svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2">Working</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link text-gray-400 transition-all duration-300 group-hover:text-white"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          </a>
+        </div>
+        <!-- GitHub Repository Card -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <a href="https://github.com/sragssmonkey/Microguardian" class="flex flex-col items-center justify-center h-full">
+            <div class="text-4xl mb-4 text-[#00c3ff]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22s-4-3-5-3c-1 0-2 1-3 2v3"/><path d="M12 2c-3.314 0-6 2.686-6 6a6 6 0 0 0 1.5 3.9L2 19l4-1c0 0 2 2 5 2a6 6 0 0 0 6-6c0-3.314-2.686-6-6-6z"/></svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2">GitHub Repository</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link text-gray-400 transition-all duration-300 group-hover:text-white"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documentation Section -->
+  <section class="w-full py-20 relative z-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">Documentation</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto mb-12">
+        Explore detailed technical specifications and peer-reviewed research for the MicroGaurdian system.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Technical Specifications Card -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <a href="#" class="flex flex-col items-center justify-center h-full">
+            <div class="text-4xl mb-4 text-[#00c3ff]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2">Technical Specifications</h3>
+            <p class="text-gray-400 mb-4">Complete hardware and software documentation for MicroGaurdian system.</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link text-gray-400 transition-all duration-300 group-hover:text-white"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          </a>
+        </div>
+        <!-- Research Methodology Card -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <a href="#" class="flex flex-col items-center justify-center h-full">
+            <div class="text-4xl mb-4 text-[#00c3ff]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-bar-chart"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M8 12v3"/><path d="M12 10v5"/><path d="M16 12v3"/></svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2">Research Methodology</h3>
+            <p class="text-gray-400 mb-4">Peer-reviewed protocols and best practices for microplastic detection.</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link text-gray-400 transition-all duration-300 group-hover:text-white"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Software & Code Section -->
+  <section class="w-full py-20 relative z-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">Software & Code</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto mb-12">
+        Access the pre-trained models and data analysis tools for advanced research.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- ML Detection Model Card -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <a href="#" class="flex flex-col items-center justify-center h-full">
+            <div class="text-4xl mb-4 text-[#00c3ff]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers-3"><path d="M12 15L3 9L12 3L21 9L12 15Z"/><path d="M12 21L3 15L12 9L21 15L12 21Z"/></svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2">ML Detection Model</h3>
+            <p class="text-gray-400 mb-4">Pre-trained machine learning model for microplastic classification.</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link text-gray-400 transition-all duration-300 group-hover:text-white"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          </a>
+        </div>
+        <!-- Data Analysis Tools Card -->
+        <div class="group p-8 rounded-3xl border border-white border-opacity-10 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(0,195,255,0.3)] bg-white bg-opacity-10 backdrop-blur-sm">
+          <a href="#" class="flex flex-col items-center justify-center h-full">
+            <div class="text-4xl mb-4 text-[#00c3ff]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart-2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2">Data Analysis Tools</h3>
+            <p class="text-gray-400 mb-4">Python scripts and Jupyter notebooks for data processing.</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link text-gray-400 transition-all duration-300 group-hover:text-white"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -208,98 +331,122 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
+  <!-- Footer Section -->
+  <footer class="w-full relative z-20 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+    <div class="container mx-auto px-4 py-8 text-center">
+      <div class="mb-4">
+        <div class="text-3xl font-bold">
+          <span class="flowing-gradient">Micro Guardian</span>
+        </div>
+      </div>
+      <div class="flex justify-center space-x-6 mb-6">
+        <!-- Social Media Icons (replace # with actual links) -->
+        <a href="#" class="text-white hover:text-[#00c3ff] transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="text-white hover:text-[#00c3ff] transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+      <div class="flex justify-center space-x-6 mb-6">
+        <a href="#" class="text-white hover:text-[#00c3ff] transition-colors">Home</a>
+        <a href="#" class="text-white hover:text-[#00c3ff] transition-colors">News</a>
+        <a href="#" class="text-white hover:text-[#00c3ff] transition-colors">About</a>
+        <a href="#" class="text-white hover:text-[#00c3ff] transition-colors">Contact Us</a>
+        <a href="#" class="text-white hover:text-[#00c3ff] transition-colors">Our Team</a>
+      </div>
+    </div>
+    <div class="w-full bg-[#0a0f12] py-4">
+      <p class="text-center text-gray-500 text-sm">
+        Copyright ©2025 Designed by Micro Guardian Team
+      </p>
+    </div>
+  </footer>
+
   <!-- Script for Canvas Animation -->
   <script>
-    const canvas = document.getElementById("bgCanvas");
-    const ctx = canvas.getContext("2d");
-    
-    // Initial resize to set canvas dimensions
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particles = [];
-
-    function random(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    // Particle class for microplastics
-    class Particle {
-      constructor() {
-        this.x = random(0, canvas.width);
-        this.y = random(0, canvas.height);
-        this.size = random(2, 6);
-        this.speedX = random(-0.5, 0.5);
-        this.speedY = random(-0.5, 0.5);
-        // Reverted to the previous color logic
-        this.color = `rgba(0, 195, 255, ${random(0.2, 0.8)})`;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.fillStyle = this.color;
-        // Removed the shadow properties to fix the "bacteria blur"
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    // Create particles
-    for (let i = 0; i < 150; i++) {
-      particles.push(new Particle());
-    }
-
-    // Animate particles
-    function animate() {
-      // Clear canvas each frame to remove trailing blur
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Draw "water ripple" background effect
-      ctx.fillStyle = 'rgba(10, 15, 18, 0.2)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    // Optional: Scatter particles on mouse hover
-    canvas.addEventListener("mousemove", (e) => {
-      particles.forEach(p => {
-        const dx = p.x - e.clientX;
-        const dy = p.y - e.clientY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          p.x += (dx / dist) * 5;
-          p.y += (dy / dist) * 5;
-        }
-      });
-    });
-
-    // Responsive canvas
-    window.addEventListener("resize", () => {
+    window.onload = function() {
+      // Background animation script
+      const canvas = document.getElementById("bgCanvas");
+      const ctx = canvas.getContext("2d");
+      
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    });
+
+      const particles = [];
+
+      function random(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      class Particle {
+        constructor() {
+          this.x = random(0, canvas.width);
+          this.y = random(0, canvas.height);
+          this.size = random(2, 6);
+          this.speedX = random(-0.5, 0.5);
+          this.speedY = random(-0.5, 0.5);
+          this.color = `rgba(0, 195, 255, ${random(0.2, 0.8)})`;
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.x > canvas.width) this.x = 0;
+          if (this.x < 0) this.x = canvas.width;
+          if (this.y > canvas.height) this.y = 0;
+          if (this.y < 0) this.y = canvas.height;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.fillStyle = this.color;
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < 150; i++) {
+        particles.push(new Particle());
+      }
+
+      function animateBackground() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(10, 15, 18, 0.2)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+
+        requestAnimationFrame(animateBackground);
+      }
+
+      animateBackground();
+
+      canvas.addEventListener("mousemove", (e) => {
+        particles.forEach(p => {
+          const dx = p.x - e.clientX;
+          const dy = p.y - e.clientY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            p.x += (dx / dist) * 5;
+            p.y += (dy / dist) * 5;
+          }
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    }
   </script>
 </body>
 </html>
