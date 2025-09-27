@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>3D Model Scroll Effect</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #111, #222);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            background: #000;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100vh;
+            --poster-color: transparent;
+            background: radial-gradient(circle at center, #181818, #000);
+        }
+
+        .components {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 4rem 1.5rem;
+            background: #111;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #1a1a1a, #222);
+            padding: 1.5rem 1.8rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            max-width: 300px;
+            flex: 1 1 250px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #4cafef;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(76, 175, 239, 0.7);
+            border-color: #81d4fa;
+        }
+
+        .card h4 {
+            margin: 0 0 0.6rem 0;
+            font-size: 1.2rem;
+            color: #4cafef;
+            position: relative;
+        }
+
+        .card h4::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: #4cafef;
+            margin-top: 4px;
+            border-radius: 2px;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #ddd;
+        }
+
+        /* Optional: subtle animation on scroll for cards */
+        @keyframes fadeInUp {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .card {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>🚀 3D Model of Standalone Microplastics Sensor</header>
+
+    <!-- 3D Model -->
+    <model-viewer id="viewer"
+                  src="{% static 'model/model.glb' %}"
+                  camera-controls
+                  auto-rotate
+                  shadow-intensity="1"
+                  exposure="1.2"
+                  ar
+                  camera-orbit="0deg 75deg 2m">
+    </model-viewer>
+
+    <!-- Components Section Below the 3D Model -->
+    <div class="components">
+        <div class="card">
+            <h4>3D Printed Cylinder</h4>
+            <p>Holds the model securely and includes a detachable water container for experiments.</p>
+        </div>
+        <div class="card">
+            <h4>ESP32</h4>
+            <p>Sends data directly via Wi-Fi and Bluetooth, making the circuit standalone with no external wires.</p>
+        </div>
+        <div class="card">
+            <h4>LEDs and LDRs</h4>
+            <p>Used to detect microplastics in water samples inside the cylinder.</p>
+        </div>
+        <div class="card">
+            <h4>Standalone Circuit</h4>
+            <p>All sensors, LEDs, and ESP32 are integrated, enabling autonomous operation.</p>
+        </div>
+    </div>
+
+    <script>
+        const viewer = document.getElementById("viewer");
+
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.scrollY;
+            const zoom = 2 - Math.min(scrollTop / 600, 1.5);
+            viewer.setAttribute("camera-orbit", `0deg 75deg ${zoom.toFixed(2)}m`);
+        });
+    </script>
+</body>
+</html>
