@@ -27,11 +27,34 @@
             letter-spacing: 1px;
         }
 
+        .model-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .model-container {
+            text-align: center;
+            flex: 1 1 45%;
+        }
+
+        .model-label {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #4cafef;
+        }
+
         model-viewer {
             width: 100%;
-            height: 100vh;
+            height: 70vh;
             --poster-color: transparent;
             background: radial-gradient(circle at center, #181818, #000);
+            border: 1px solid #4cafef;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
         }
 
         .components {
@@ -52,6 +75,7 @@
             flex: 1 1 250px;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #4cafef;
+            animation: fadeInUp 0.8s ease forwards;
         }
 
         .card:hover {
@@ -84,32 +108,45 @@
             color: #ddd;
         }
 
-        /* Optional: subtle animation on scroll for cards */
         @keyframes fadeInUp {
             from {opacity: 0; transform: translateY(20px);}
             to {opacity: 1; transform: translateY(0);}
-        }
-
-        .card {
-            animation: fadeInUp 0.8s ease forwards;
         }
     </style>
 </head>
 <body>
     <header>🚀 3D Model of Standalone Microplastics Sensor</header>
 
-    <!-- 3D Model -->
-    <model-viewer id="viewer"
-                  src="{% static 'model/model.glb' %}"
-                  camera-controls
-                  auto-rotate
-                  shadow-intensity="1"
-                  exposure="1.2"
-                  ar
-                  camera-orbit="0deg 75deg 2m">
-    </model-viewer>
+    <!-- Two Models Side by Side -->
+    <div class="model-section">
+        <div class="model-container">
+            <div class="model-label">Open</div>
+            <model-viewer id="viewer1"
+                          src="{% static 'model/model.glb' %}"
+                          camera-controls
+                          auto-rotate
+                          shadow-intensity="1"
+                          exposure="1.2"
+                          ar
+                          camera-orbit="0deg 75deg 2m">
+            </model-viewer>
+        </div>
 
-    <!-- Components Section Below the 3D Model -->
+        <div class="model-container">
+            <div class="model-label">Closed</div>
+            <model-viewer id="viewer2"
+                          src="{% static 'model/model2.glb' %}"
+                          camera-controls
+                          auto-rotate
+                          shadow-intensity="1"
+                          exposure="1.2"
+                          ar
+                          camera-orbit="0deg 75deg 2m">
+            </model-viewer>
+        </div>
+    </div>
+
+    <!-- Components Section -->
     <div class="components">
         <div class="card">
             <h4>3D Printed Cylinder</h4>
@@ -130,12 +167,14 @@
     </div>
 
     <script>
-        const viewer = document.getElementById("viewer");
+        const viewer1 = document.getElementById("viewer1");
+        const viewer2 = document.getElementById("viewer2");
 
         window.addEventListener("scroll", () => {
             const scrollTop = window.scrollY;
             const zoom = 2 - Math.min(scrollTop / 600, 1.5);
-            viewer.setAttribute("camera-orbit", `0deg 75deg ${zoom.toFixed(2)}m`);
+            viewer1.setAttribute("camera-orbit", `0deg 75deg ${zoom.toFixed(2)}m`);
+            viewer2.setAttribute("camera-orbit", `0deg 75deg ${zoom.toFixed(2)}m`);
         });
     </script>
 </body>
